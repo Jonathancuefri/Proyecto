@@ -1,0 +1,116 @@
+/* Variables globales */
+:root {
+    --color-bg: #f1f1f1;
+    --caribbean-current: #0c2340;
+    --moonstone: #184680;
+    --isabelline: #ede7e3;
+    --orange-peel: #ec5022;
+    --white: #fff;
+  }
+  
+  * {
+    box-sizing: content-box;
+    margin: 0;
+  }
+  
+  body {
+    background: var(--color-bg);
+  }
+  
+  /* Estilos para el header */
+  header {
+    background-color: var(--caribbean-current);
+    height: 10vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  nav span {
+    font-size: 1.5em;
+    font-weight: bolder;
+  }
+  
+  /* Estilos para el contenido principal */
+  main {
+    padding: 20px;
+    height: 60vh;
+  }
+  
+  a {
+    color: var(--isabelline);
+    text-decoration: none;
+  }
+  
+  main h1 {
+    color: var(--orange-peel);
+    font-family: Jaro;
+    font-size: 3.5em;
+  }
+  
+  .about{
+    color: var(--orange-peel);
+    padding: 20px;
+    margin-bottom: 20px;
+  }
+
+  
+  /* Estilos para la lista de enlaces */
+  
+  main section {
+    display: flex;
+    justify-content: center;
+  }
+  
+  .index-link {
+    width: 70vw;
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+  
+  .index-link span {
+    background: var(--caribbean-current);
+    display: block;
+    width: 15vw;
+    padding: 10px 20px;
+    margin: 10px;
+    text-align: center;
+    transition: 0.3s linear;
+    font-family: "Arial", sans-serif;
+    font-weight: bold;
+    font-size: 1.3em;
+    border-radius: 5px;
+  }
+  
+  .index-link span:hover {
+    background: var(--orange-peel);
+  }
+  
+  /* Footer */
+  
+  footer {
+    height: 27vh;
+    background: var(--caribbean-current);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  footer span {
+    width: 70px;
+    height: 70px;
+    background: var(--moonstone);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10px;
+  }
+  
+  footer span a {
+    font-size: 2em;
+    color: var(--orange-peel);
+  }
+  

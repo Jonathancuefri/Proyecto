@@ -1,0 +1,96 @@
+{% extends 'layouts/base_read.html' %}
+{% load custom_filters %}
+
+{% block title %}Lista de {{ tabla }}{% endblock %}
+
+{% block content %}
+    <h1>Lista de {{ tabla }}</h1>
+
+    <section>
+        {# Formulario para elegir registro sobre el cual actuar con sus respectivos botones #}
+        <form id="userForm" method="GET">
+            <select id="employeeSelect" name="usuario">
+                {% if campo_seleccionado == 'usuario' %}
+                    {% for obj in objects %}
+                        <option value="{{ obj.usuario }}">{{ obj }}</option>
+                    {% endfor %}
+                {% elif campo_seleccionado == 'nombre' %}
+                    {% for obj in objects %}
+                        <option value="{{ obj.nombre }}">{{ obj }}</option>
+                    {% endfor %}
+                {% elif campo_seleccionado == 'num_tarjeta' %}
+                    {% for obj in objects %}
+                        <option value="{{ obj.num_tarjeta }}">{{ obj }}</option>
+                    {% endfor %}
+                {% endif %}
+            </select>
+            <button type="button" onclick="cargaDeRegistros()">Cargar Datos</button>
+            <button type="button" onclick="actualizarRegistros()">Actualizar Datos</button>
+            <button type="button" onclick="crearRegistros()">Crear Datos</button>
+            <button type="button" onclick="eliminarRegistros()">Borrar Datos</button>
+            {% if tabla == 'EMPLEADOS' %}
+                <button type="button" onclick="imprimirRegistros()">Imprimir Datos</button>
+            {% endif %}
+        </form>
+
+        {# Esta parte es para crear las vistas de las tablas #}
+        <div class="container">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        {% for field in fields %}
+                            <th>{{ field.verbose_name }}</th>
+                        {% endfor %}
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for obj in empleados %}
+                    <tr>
+                        {% for field in fields %}
+                            <td>{{ obj|get_item:field.name }}</td>
+                        {% endfor %}
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>      
+    </section>
+
+    {# Define una variable JavaScript con el valor de "tabla" #}
+    <script>
+        var tabla = "{{ tabla|lower }}";
+
+        function cargaDeRegistros() {
+            var selectedUser = document.getElementById("employeeSelect").value;
+            var baseUrl = "/read/" + tabla + "/"; // Obtener la parte de la URL antes del '?'
+            var newUrl = baseUrl + selectedUser; // Construir la nueva URL
+            window.location.href = newUrl; // Redirigir a la nueva URL
+        }
+
+        function actualizarRegistros() {
+            var selectedUser = document.getElementById("employeeSelect").value;
+            var baseUrl = "/update/" + tabla + "/"; // Obtener la parte de la URL antes del '?'
+            var newUrl = baseUrl + selectedUser; // Construir la nueva URL
+            window.location.href = newUrl; // Redirigir a la nueva URL
+        }
+
+        function crearRegistros() {
+            var baseUrl = "/create/" + tabla + "/"; // Obtener la parte de la URL antes del '?'
+            window.location.href = baseUrl; // Redirigir a la nueva URL
+        }
+
+        function eliminarRegistros() {
+            var selectedUser = document.getElementById("employeeSelect").value;
+            var baseUrl = "/delete/" + tabla + "/"; // Obtener la parte de la URL antes del '?'
+            var newUrl = baseUrl + selectedUser; // Construir la nueva URL
+            window.location.href = newUrl; // Redirigir a la nueva URL
+        }
+
+        function imprimirRegistros(){
+            var selectedUser = document.getElementById("employeeSelect").value;
+            var baseUrl = "/hoja_devolucion/" + tabla + "/"; // Obtener la parte de la URL antes del '?'
+            var newUrl = baseUrl + selectedUser; // Construir la nueva URL
+            window.location.href = newUrl; // Redirigir al formulario de impresión con el usuario seleccionado
+        }
+    </script>
+{% endblock %}

@@ -1,0 +1,14 @@
+{% extends 'layouts/base_update.html' %}
+{% block content %}
+<h2>EDITAR</h2>
+<div class ="container">
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Guardar Cambios</button>
+    <button type="button" onclick="window.location.href='/read/{{ tabla }}/'">Cancelar</button> 
+
+</form>
+</div>
+
+{% endblock %}

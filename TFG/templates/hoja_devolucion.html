@@ -1,0 +1,95 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hoja de Control de Devolución de Recursos y Equipamiento Técnico Informático</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+    <style>
+        body {
+            font-family: Open Sans, sans-serif;
+            margin: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+        }
+        .logo {
+            display: block;
+            margin: 0 auto 10px; /* Centrar horizontalmente y añadir espacio debajo */
+        }
+        .title {
+            text-align: center;
+        }
+        .signature {
+            margin-top: 50px;
+        }
+        .signature table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .signature td, .signature th {
+            border: 1px solid black;
+            padding: 10px;
+            vertical-align: top;
+        }
+        .signature .sign-space {
+            height: 80px; /* Ajusta esta altura según tus necesidades */
+        }
+        .signature p {
+            margin: 0;
+        }
+        /* Ocultar elementos con clase no-print durante la impresión */
+        @media print {
+            .no-print {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img src="{% static 'img/hispa2.jpg' %}" alt="Hispasec" width=30%% height=10%%></a>
+        <h2 class="title">HOJA DE CONTROL DE DEVOLUCIÓN DE LOS RECURSOS Y EQUIPAMIENTO TÉCNICO INFORMÁTICO</h2>
+        <p>De una parte, D./Dña. <b>{{ empleado.nombre }} {{ empleado.apellidos }}</b>, con D.N.I. <b>{{ empleado.dni }}</b>, trabajador del departamento de <b>{{ empleado.departamento }}</b>, en el puesto de <b>{{ empleado.puesto }}</b>.</p>
+        <p>De otra parte, D./Dña. Jonathan Cuellar Frías, como representante de la empresa HISPASEC SISTEMAS S.L., con C.I.F. nº 12345, con domicilio en Calle Severo Ochoa, 10, Campanillas, 29590 Málaga.</p>
+        <p>Por el presente documento,  <b>{{ empleado.nombre }} {{ empleado.apellidos }}</b>, realiza la devolución de todos los recursos de trabajo propiedad de HISPASEC, que le fueron entregados con fines profesionales para el correcto desarrollo de su relación laboral.</p>
+        <p>Se hace entrega a HISPASEC del siguiente material, que ha sido verificado en su totalidad por la empresa respecto de la hoja de entrega de material firmada con fecha {{ dia_actual }} de {{ mes_actual }} de {{ ano_actual }}:</p>
+        <ol>
+            <li>ORDENADOR PORTÁTIL / SOBREMESA ASIGNADO: {{ empleado.ordenador1 }},{{ empleado.ordenador2 }} y {{ empleado.ordenador3 }}</li>
+            <li>NÚMERO DE TARJETA DE ACCESO: <b>{{ empleado.tarjeta }}</b>.</li>
+            <li>DIRECCIÓN DE EMAIL ASOCIADA A LA APP DE ACCESO AL PARKING (HOMMY HUB) <b>{{ empleado.email }}</b>.</li>
+        </ol>
+        <p>En Málaga, a <b>{{ dia_actual }} de {{ mes_actual }} de {{ ano_actual }} </b>.</p>
+
+        <div class="signature">
+            <table>
+                <tr>
+                    <td>
+                        <p>FIRMA DEL EMPLEADO:</p>
+                        <p>Fdo.: D./Dña. <b>{{ empleado.nombre }} {{ empleado.apellidos }}</b> D.N.I. <b>{{ empleado.dni }}</b></p>
+                    </td>
+                    <td>
+                        <p>FIRMA AUTORIZADA Y SELLO DE LA EMPRESA:</p>
+                        <p>Fdo.: D./Dña. Jonathan Cuellar Frías C.I.F. nº: 12345</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="sign-space"></td>
+                    <td class="sign-space"></td>
+                </tr>
+            </table>
+        </div>
+
+        <button class="no-print" onclick="imprimirRegistros()">Descargar PDF</button>
+    </div>
+
+    <script>
+        function imprimirRegistros(){
+            window.print();
+        }
+    </script>
+</body>
+</html>

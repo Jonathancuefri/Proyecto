@@ -1,0 +1,46 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Jaro|Roboto+Mono"/>
+        <script src="https://kit.fontawesome.com/3c9e970b34.js" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="{% static 'css/style.css' %}">
+        <title>Lectura</title>
+    </head>
+    <body>
+        <header>
+            {% include 'layouts/partials/menu.html' %}
+        </header>
+        {# Este contenido se encuentra en "form.py" #}
+        <main>
+            <h1>Jonathan- TFG</h1>
+    
+            <div class="about">
+                    <h3>Página de lectura</h3>
+                    <p>Enlace a las tablas</p>
+            </div>
+            <section>
+                <div class="index-link">
+                    <span><a href="{% url 'lectura_general' 'empleados' %}"> Empleados</a></span>
+                    <span><a href="{% url 'lectura_general' 'departamentos' %}"> Departamentos</a></span>
+                    <span><a href="{% url 'lectura_general' 'puestos' %}"> Puestos</a></span>
+                    <span><a href="{% url 'lectura_general' 'incidencias' %}"> Incidencias</a></span>
+                    <span><a href="{% url 'lectura_general' 'moviles' %}"> Moviles</a></span>
+                    <span><a href="{% url 'lectura_general' 'ordenadores' %}"> Ordenadores</a></span>
+                    <span><a href="{% url 'lectura_general' 'perifericos' %}"> Perifericos</a></span>
+                    <span><a href="{% url 'lectura_general' 'servicios' %}"> Servicios</a></span>
+                    <span><a href="{% url 'lectura_general' 'electronica' %}"> Electronica</a></span>
+                    <span><a href="{% url 'lectura_general' 'dispositivos' %}"> Dispositivos</a></span>
+                    <span><a href="{% url 'lectura_general' 'tarjetas' %}"> Tarjetas</a></span>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            {% include 'layouts/partials/footer.html' %}    
+        </footer>
+</body>
+</html>
